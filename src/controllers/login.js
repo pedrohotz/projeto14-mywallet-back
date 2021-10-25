@@ -21,6 +21,11 @@ async function loginUser(req,res){
     }
     try {
         const user = await connection.query("SELECT * FROM usuarios WHERE email = $1",[email]);
+
+        if (user.rowCount === 0){
+            res.sendStatus(401)
+            return;
+        }
         const hash = bcrypt.compareSync(senha,user.rows[0].password);
 
         if(!hash){

@@ -15,4 +15,6 @@ app.get('/userhistory',getHistory);
 app.post('/sendEntry',sendEntry);
 app.post('/sendOutput',sendOutput);
 
-app.listen(4000);
+
+export default app;
+

@@ -13,9 +13,13 @@ const userValidationLogin = joi.object({
     senha: joi.string().alphanum().min(5).required(),
 })
 
-
+const entranceValidation = joi.object({
+    value: joi.string().required(),
+    description: joi.string().max(30).required(),
+})
 
 export {
     userValidation,
     userValidationLogin,
+    entranceValidation,
 }

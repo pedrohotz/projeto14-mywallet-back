@@ -1,9 +1,15 @@
 import dayjs from "dayjs";
 import connection from "../database/database.js";
+import {entranceValidation} from "../validation/validation.js";
 
 
 async function getHistory(req,res){
     const  token  = req.headers.authorization?.replace('Bearer ', '');
+
+    if(!token){
+        res.sendStatus(401)
+        return;
+    }
     try {
         const existentSession = await connection.query('SELECT * FROM sessoes WHERE token = $1',[token]);
         if(existentSession.rowCount === 0){
@@ -30,6 +36,17 @@ async function sendEntry(req,res){
         description,
         value,
     } = req.body;
+
+    const errors = entranceValidation.validate({
+       value,
+       description,
+
+    }).error;
+    if(errors){
+        console.log(errors);
+        res.sendStatus(400);
+        return;
+    }
     const type = "entrada";
     try {
         const existentSession = await connection.query('SELECT * FROM sessoes WHERE token = $1',[token]);
