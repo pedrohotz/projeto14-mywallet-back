@@ -1,3 +1,8 @@
-import app from "../index.js";
+import './setup.js';
+import app from '../index.js';
 
-app.listen(4000);
+const port = 4000;
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
