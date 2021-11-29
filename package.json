@@ -24,7 +24,8 @@
     "joi": "^17.4.2",
     "pg": "^8.7.1",
     "supertest": "^6.1.6",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "faker": "^5.5.3"
   },
   "devDependencies": {
     "eslint": "^8.3.0",
